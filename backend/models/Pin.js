@@ -25,7 +25,7 @@ const PinSchema = new mongoose.Schema({
         type:Number,
         require:true
     },
-    lon: {
+    long: {
         type:Number,
         require:true
     }
