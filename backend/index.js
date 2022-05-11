@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 const app = express();
 const pinRoute = require("./routes/pins")
+const userRoute = require("./routes/users")
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true}).then( () => {
 .catch( (err) => console.log(err));
 
 app.use("/api/pins", pinRoute) //means that when we send req to localhost/api/pins, that req will go to pinRoute which is defined as ./routes/pins
+app.use("/api/users", userRoute)
 
 app.listen(8800, () =>{
     console.log("Backend server is running");
