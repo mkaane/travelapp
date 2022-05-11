@@ -1,3 +1,4 @@
 -nodemon is a tool that restarts the backend server after a change is done
 -dotenv is a library that ensures us to hide secret informations such as database password and name, it helps us to hide these informations
 from others like when we pushing on github.
+-user.js line 22: timestamps:true means if we create or edit a user, it will automatically updated.
