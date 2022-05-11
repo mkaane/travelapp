@@ -2,3 +2,7 @@
 -dotenv is a library that ensures us to hide secret informations such as database password and name, it helps us to hide these informations
 from others like when we pushing on github.
 -user.js line 22: timestamps:true means if we create or edit a user, it will automatically updated.
+-on routes, for example conts Pin = require("../models/Pin") means that we import that model.
+-there are async function like save or etc. That means this operations take time. so, like create a pin function, we should define the 
+function async and when we send response, code should wait the save operation to finish, so we should use await before send response. 
+(pins.js line:10)
