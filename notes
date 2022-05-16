@@ -6,3 +6,5 @@ from others like when we pushing on github.
 -there are async function like save or etc. That means this operations take time. so, like create a pin function, we should define the 
 function async and when we send response, code should wait the save operation to finish, so we should use await before send response. 
 (pins.js line:10)
+-useEffect on frontend app.js: this means when we refresh the page, it will fetch with backend server
+useEffect(() => {}, []) empty [ ] means it has not got a condition, every time we refresh, it gonna work
