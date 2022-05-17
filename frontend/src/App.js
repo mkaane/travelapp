@@ -7,8 +7,10 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import StarRateIcon from '@mui/icons-material/StarRate';
 import "./app.css"
 
+
 function App() {
   const [pins, setPins] = useState([])
+  const [currentPlaceId, setCurrentPlaceId] = useState(null)
   const [viewport, setViewport] = useState({
     latitude: 39.925533,
     longitude: 32.866287,
@@ -26,6 +28,11 @@ function App() {
     };
     getPins();
   }, []);
+  
+  const handleMarkerClick = (id) => {
+    setCurrentPlaceId(id)
+  }
+
 
 
   return (
@@ -45,18 +52,20 @@ function App() {
       longitude={p.long} 
       offsetLeft={-20} 
       offsetTop={-10}>
-      <LocationOnIcon />
+      <LocationOnIcon onClick={() => handleMarkerClick(p._id)}/>
       </Marker>
-      
+      {p._id === currentPlaceId && (//means if p_id equals currentPlaceId
       <Popup
         latitude={p.lat}
         longitude={p.long}
         closeButton={true}
         closeOnClick={false}
-        anchor="left">
+        anchor="left"
+        onClose={()=>setCurrentPlaceId(null)}
+        >
           <div className='card'>
             <label>Place</label>
-            <h4 className='place'>{p.title}</h4>
+            <h4 className="place">{p.title}</h4>
             <label>Review</label>
             <p className='desc'>{p.desc}</p>
             <label>Rating</label>
@@ -72,7 +81,7 @@ function App() {
             <span className='date'>1 hour ago</span>
           </div>
       </Popup>
-      
+      )}
       </>
       ))}
     

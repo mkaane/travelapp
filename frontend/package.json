@@ -14,6 +14,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "mapbox-gl": "^2.8.2",
+    "radium": "^0.26.2",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-map-gl": "^7.0.12",
@@ -43,5 +44,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }, "proxy": "http://localhost:8800/api"
+  },
+  "proxy": "http://localhost:8800/api"
 }
