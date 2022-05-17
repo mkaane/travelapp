@@ -9,6 +9,7 @@ import "./app.css"
 
 
 function App() {
+  const currentUser = "cihan" //temporary
   const [pins, setPins] = useState([])
   const [currentPlaceId, setCurrentPlaceId] = useState(null)
   const [viewport, setViewport] = useState({
@@ -52,7 +53,7 @@ function App() {
       longitude={p.long} 
       offsetLeft={-20} 
       offsetTop={-10}>
-      <LocationOnIcon onClick={() => handleMarkerClick(p._id)}/>
+      <LocationOnIcon style={{cursor:"pointer", color:p.username===currentUser ? "tomato" : "slateblue"}} onClick={() => handleMarkerClick(p._id)}/>
       </Marker>
       {p._id === currentPlaceId && (//means if p_id equals currentPlaceId
       <Popup
