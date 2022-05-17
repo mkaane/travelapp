@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import axios from "axios"
+import axios from "axios";
 import Map, {Marker, Popup} from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -13,9 +13,9 @@ function App() {
     latitude: 39.925533,
     longitude: 32.866287,
     zoom: 6
-  })
+  });
 
-  useEffect(() => {
+  useEffect( () => {
     const getPins = async () => {
       try {
         const res = await axios.get("/pins");
@@ -38,9 +38,10 @@ function App() {
       mapboxAccessToken={process.env.REACT_APP_MAPBOX}
     >
       
-      {pins.map(p => (
+      {pins.map((p) => (
         <>
-      <Marker latitude={p.lat} 
+      <Marker 
+      latitude={p.lat} 
       longitude={p.long} 
       offsetLeft={-20} 
       offsetTop={-10}>
