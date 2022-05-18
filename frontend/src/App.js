@@ -6,15 +6,19 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import StarRateIcon from '@mui/icons-material/StarRate';
 import "./app.css"
+import Register from './components/Register';
+import Login from './components/Login';
 
 
 function App() {
-  const currentUser = "cihan" //temporary
+  const [currentUser, setCurrentUser] = useState(null)
   const [pins, setPins] = useState([])
   const [currentPlaceId, setCurrentPlaceId] = useState(null)
   const [newPlace, setNewPlace] = useState(null)
   const [title, setTitle] = useState(null)
   const [desc, setDesc] = useState(null)
+  const [showRegister, setShowRegister] = useState(false)
+  const [showLogin, setShowLogin] = useState(false)
   const [rating, setRating] = useState(0)
   const [viewport, setViewport] = useState({
     latitude: 39.925533,
@@ -151,11 +155,11 @@ function App() {
           )}
           {currentUser ? (<button className='button logout'>Logout</button>) : 
           (<div className='buttons'>
-          <button className='button login'>Login</button>
-          <button className='button register'>Register</button>
+          <button className='button login' onClick={() => setShowLogin(true)}>Login</button>
+          <button className='button register' onClick={() => setShowRegister(true)}>Register</button>
           </div>)}
-          
-    
+          {showRegister && <Register setShowRegister={setShowRegister}/>} //if showRegister is true, show us register page
+          {showLogin && <Login setShowLogin={setShowLogin}/> } //if showLogin is true, show us login page
     </Map>
     </div>
   );

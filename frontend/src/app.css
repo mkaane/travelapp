@@ -61,6 +61,7 @@ input::placeholder, textarea::placeholder{
     padding: 5px;
     border-radius: 5px;
     color: white;
+    cursor: pointer;
 }
 
 .logout{
@@ -69,6 +70,7 @@ input::placeholder, textarea::placeholder{
 
 .login{
     background-color: teal;
+    margin-right: 10px;
 }
 
 .register{

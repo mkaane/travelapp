@@ -8,3 +8,5 @@ function async and when we send response, code should wait the save operation to
 (pins.js line:10)
 -useEffect on frontend app.js: this means when we refresh the page, it will fetch with backend server
 useEffect(() => {}, []) empty [ ] means it has not got a condition, every time we refresh, it gonna work
+-useState is a hook, const [show, setShow] = useState(false) means their initial value is false, after that if we want to change "show" to
+true, we should write setShow(true)
