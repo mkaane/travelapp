@@ -12,6 +12,7 @@ function App() {
   const currentUser = "cihan" //temporary
   const [pins, setPins] = useState([])
   const [currentPlaceId, setCurrentPlaceId] = useState(null)
+  const [newPlace, setNewPlace] = useState(null)
   const [viewport, setViewport] = useState({
     latitude: 39.925533,
     longitude: 32.866287,
@@ -34,7 +35,14 @@ function App() {
     setCurrentPlaceId(id)
   }
 
-
+  const handleAddClick = (e) => {
+    //console.log(e) //we wrote this and try to double click on map, it return us lat and long values as "lngLat", so we will use this
+    const [long, lat] = [e.lngLat.lng, e.lngLat.lat] ;
+    setNewPlace({
+      lat:lat,
+      long:long,
+    })  
+  }
 
   return (
   <div className="App">
@@ -44,6 +52,7 @@ function App() {
       style={{width: "100vw", height: "100vh"}}
       mapStyle="mapbox://styles/mapbox/streets-v9"
       mapboxAccessToken={process.env.REACT_APP_MAPBOX}
+      onDblClick = {handleAddClick}
     >
       
       {pins.map((p) => (
@@ -53,7 +62,8 @@ function App() {
       longitude={p.long} 
       offsetLeft={-20} 
       offsetTop={-10}>
-      <LocationOnIcon style={{cursor:"pointer", color:p.username===currentUser ? "tomato" : "slateblue"}} onClick={() => handleMarkerClick(p._id)}/>
+      <LocationOnIcon style={{cursor:"pointer", color:p.username===currentUser ? "tomato" : "slateblue"}} 
+      onClick={() => handleMarkerClick(p._id)}/>
       </Marker>
       {p._id === currentPlaceId && (//means if p_id equals currentPlaceId
       <Popup
@@ -85,6 +95,17 @@ function App() {
       )}
       </>
       ))}
+
+        {newPlace && (
+          <Popup
+          latitude={newPlace.lat}
+          longitude={newPlace.long}
+          closeButton={true}
+          closeOnClick={false}
+          anchor="left"
+          onClose={()=>setNewPlace(null)}
+          >hello</Popup>
+          )}
     
     </Map>
     </div>
