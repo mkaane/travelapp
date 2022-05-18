@@ -31,8 +31,9 @@ function App() {
     getPins();
   }, []);
   
-  const handleMarkerClick = (id) => {
+  const handleMarkerClick = (id, lat, long) => {
     setCurrentPlaceId(id)
+    setViewport({...viewport, latitude:lat, longitude:long})
   }
 
   const handleAddClick = (e) => {
@@ -63,7 +64,7 @@ function App() {
       offsetLeft={-20} 
       offsetTop={-10}>
       <LocationOnIcon style={{cursor:"pointer", color:p.username===currentUser ? "tomato" : "slateblue"}} 
-      onClick={() => handleMarkerClick(p._id)}/>
+      onClick={() => handleMarkerClick(p._id, p.lat, p.long)}/>
       </Marker>
       {p._id === currentPlaceId && (//means if p_id equals currentPlaceId
       <Popup
