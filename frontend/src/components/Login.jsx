@@ -5,7 +5,8 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import axios from 'axios';
 import CloseIcon from '@mui/icons-material/Close';
-export default function Login({setShowLogin}) {
+
+export default function Login({setShowLogin, setCurrentUser, myStorage}) {
     
     const [error, setError] = useState(false)
     const nameRef = useRef()
@@ -18,9 +19,12 @@ export default function Login({setShowLogin}) {
             password: passwordRef.current.value,
         }
         try {
-            await axios.post("/users/login", user)
-            setError(false)
+            const res = await axios.post("/users/login", user);
+            setCurrentUser(res.data.username)
+            myStorage.setItem("user", res.data.username);
+            setShowLogin(false)
         } catch (err) {
+            console.log(err)
             setError(true)
         }
     }
@@ -32,7 +36,7 @@ export default function Login({setShowLogin}) {
         </div>
         <form onSubmit={handleSubmit}>
             <input type="text" placeholder='Username' ref={nameRef}/>
-            <input type="text" placeholder='Password' ref={passwordRef}/>
+            <input type="password" placeholder='Password' ref={passwordRef}/>
             <button className='loginButton'>Login</button>
             {error && (
                 <span className='fail'>Something went wrong, try again.</span>

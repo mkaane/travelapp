@@ -4,7 +4,6 @@ const Pin = require("../models/Pin");
 //Create a pin
 router.post("/", async (req,res) => {
     const newPin = new Pin(req.body)
-
     try {
         //try to save new pin
         const savedPin = await newPin.save(); //we should wait operation finish, before send response

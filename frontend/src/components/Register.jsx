@@ -37,7 +37,7 @@ export default function Register({setShowRegister}) {
         <form onSubmit={handleSubmit}>
             <input type="text" placeholder='Username' ref={nameRef}/>
             <input type="text" placeholder='E-mail' ref={emailRef}/>
-            <input type="text" placeholder='Password' ref={passwordRef}/>
+            <input type="password" placeholder='Password (Minimum 6 characters)' ref={passwordRef} minLength={6}/>
             <button className='registerButton'>Register</button>
             {success && (
                 <span className='success'>Successful! You can login now.</span>

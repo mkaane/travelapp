@@ -11,7 +11,8 @@ import Login from './components/Login';
 
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(null)
+  const myStorage = window.localStorage;
+  const [currentUser, setCurrentUser] = useState(myStorage.getItem("user"))
   const [pins, setPins] = useState([])
   const [currentPlaceId, setCurrentPlaceId] = useState(null)
   const [newPlace, setNewPlace] = useState(null)
@@ -69,6 +70,11 @@ function App() {
     } catch (err) {
       console.log(err)
     }
+  }
+  
+  const handleLogout = () => {
+    setCurrentUser(null)
+    myStorage.removeItem("user");
   }
 
   return (
@@ -153,13 +159,17 @@ function App() {
             </div>
           </Popup>
           )}
-          {currentUser ? (<button className='button logout'>Logout</button>) : 
+          {currentUser ? (<button className='button logout' onClick={handleLogout}>Logout</button>) : 
           (<div className='buttons'>
           <button className='button login' onClick={() => setShowLogin(true)}>Login</button>
           <button className='button register' onClick={() => setShowRegister(true)}>Register</button>
           </div>)}
-          {showRegister && <Register setShowRegister={setShowRegister}/>} //if showRegister is true, show us register page
-          {showLogin && <Login setShowLogin={setShowLogin}/> } //if showLogin is true, show us login page
+          {showRegister && <Register setShowRegister={setShowRegister}/>} {/*if showRegister is true, show us register page */}
+          {showLogin && <Login 
+          setShowLogin={setShowLogin} 
+          setCurrentUser={setCurrentUser}
+          myStorage={myStorage}
+          /> } {/*if showLogin is true, show us login page */}
     </Map>
     </div>
   );
