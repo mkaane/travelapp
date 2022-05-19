@@ -63,6 +63,7 @@ function App() {
       lat:newPlace.lat,
       long:newPlace.long
     }
+    
     try {
       const res = await axios.post("/pins", newPin);
       setPins([...pins, res.data]);
@@ -85,7 +86,7 @@ function App() {
       style={{width: "100vw", height: "100vh"}}
       mapStyle="mapbox://styles/mapbox/streets-v9"
       mapboxAccessToken={process.env.REACT_APP_MAPBOX}
-      onDblClick = {handleAddClick}
+      onDblClick = {currentUser && handleAddClick}
     >
       
       {pins.map((p) => (
