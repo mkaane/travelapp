@@ -20,7 +20,7 @@ function App() {
   const [desc, setDesc] = useState(null)
   const [showRegister, setShowRegister] = useState(false)
   const [showLogin, setShowLogin] = useState(false)
-  const [rating, setRating] = useState(0)
+  const [star, setStar] = useState(0)
   const [viewport, setViewport] = useState({
     latitude: 39.925533,
     longitude: 32.866287,
@@ -59,7 +59,7 @@ function App() {
       username: currentUser,
       title: title,
       desc: desc,
-      rating: rating,
+      rating: star,
       lat:newPlace.lat,
       long:newPlace.long
     }
@@ -146,13 +146,12 @@ function App() {
                 
 
                 <label>Rating</label>
-                <select onChange={(e) => setRating(e.target.value)}>
+                <select onChange={(e) => setStar(e.target.value)}>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                   <option value="4">4</option>
                   <option value="5">5</option>
-
                 </select>
                 <button className='submitButton' type="submit">Add Pin</button>
               </form>
