@@ -21,6 +21,6 @@ mongoose.connect(process.env.MONGO_URL,
 app.use("/api/pins", pinRoute) //means that when we send req to localhost/api/pins, that req will go to pinRoute which is defined as ./routes/pins
 app.use("/api/users", userRoute)
 
-app.listen(8800, () => {
+app.listen(xxxx, () => {
     console.log("Backend server is running");
 })
